@@ -17,32 +17,41 @@ export default function CitySelection() {
   const [selections, setSelections] = useState(Array(3).fill(null));
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
-  const hint = sessionStorage.getItem('hint');
+  const [hint, setHint] = useState('');
 
   useEffect(() => {
-    const gameStartTime = sessionStorage.getItem('gameStartTime');
-    if (!gameStartTime) {
-      sessionStorage.setItem('gameStartTime', new Date().toISOString());
+    // Ensure this code runs only on the client side
+    if (typeof window !== 'undefined') {
+      const gameStartTime = sessionStorage.getItem('gameStartTime');
+      if (!gameStartTime) {
+        sessionStorage.setItem('gameStartTime', new Date().toISOString());
+      }
+
+      const startTime = new Date(gameStartTime);
+      const currentTime = new Date();
+      const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+      setTimeLeft(120 - elapsedTime);
+
+      const timer = setInterval(() => {
+        setTimeLeft(prevTime => {
+          if (prevTime <= 1) {
+            clearInterval(timer);
+            alert('Time is up! The fugitive has escaped.');
+            router.push('/');
+            return 0;
+          }
+          if (prevTime <= 30) {
+            alert('Hurry! The fugitive is about to escape!');
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+
+      const hint = sessionStorage.getItem('hint');
+      setHint(hint || '');
+
+      return () => clearInterval(timer);
     }
-
-    const startTime = new Date(gameStartTime);
-    const currentTime = new Date();
-    const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-    setTimeLeft(120 - elapsedTime);
-
-    const timer = setInterval(() => {
-      setTimeLeft(prevTime => {
-        if (prevTime <= 1) {
-          clearInterval(timer);
-          alert('Time is up! The fugitive has escaped.');
-          router.push('/');
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
   }, [router]);
 
   const handleSelect = (copIndex, cityName) => {
@@ -70,7 +79,9 @@ export default function CitySelection() {
 
   const proceedToVehicles = () => {
     if (!validateSelections()) return;
-    sessionStorage.setItem('citySelections', JSON.stringify(selections));
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('citySelections', JSON.stringify(selections));
+    }
     router.push('/vehicle-selection');
   };
 
