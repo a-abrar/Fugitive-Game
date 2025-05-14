@@ -1,0 +1,20 @@
+:root {
+  --primary-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --accent-color: #4facfe;
+  --danger-color: #ff6b6b;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background: var(--primary-gradient);
+  color: var(--text-primary);
+  min-height: 100vh;
+}

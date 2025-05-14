@@ -1,0 +1,216 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #a1a1a1;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.copHeader {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.copImage {
+  border-radius: 50%;
+  border: 3px solid #4facfe;
+  transition: transform 0.3s ease;
+}
+
+.copInfo {
+  flex: 1;
+}
+
+.copInfo h3 {
+  margin: 0 0 0.5rem 0;
+  color: #4facfe;
+}
+
+.selectContainer {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.select {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  appearance: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4facfe;
+}
+
+.selectArrow {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid white;
+  pointer-events: none;
+}
+
+.vehiclePreview {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.rangeIndicator {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.rangeBar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.vehicleImage {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-top: 1rem;
+}
+
+.proceedButton {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+.proceedButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+}
+
+.rangeComparison {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.rangeIndicator {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.rangeBar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  background-color: #4facfe;
+}
+
+.timer {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #ff6b6b;
+  font-weight: bold;
+  text-align: center;
+}
+
+.vehicleImage {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.error {
+  color: #ff6b6b;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255,0,0,0.1);
+  border-radius: 8px;
+  text-align: center;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
