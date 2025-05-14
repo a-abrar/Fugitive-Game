@@ -60,7 +60,7 @@ export default function Home() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/fugitive-location`);
+      const response = await fetch('https://fugitive-game-backend.onrender.com/api/fugitive-location');
       if (!response.ok) throw new Error('Network response failed');
 
       const { fugitiveLocation } = await response.json();

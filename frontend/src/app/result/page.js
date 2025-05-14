@@ -22,7 +22,7 @@ export default function Result() {
           return;
         }
 
-        const response = await fetch('http://localhost:5000/api/capture-status', {
+        const response = await fetch('https://fugitive-game-backend.onrender.com/api/capture-status', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
